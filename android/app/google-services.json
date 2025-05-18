@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "860272973880",
+    "project_id": "todo-app-firebase-notif",
+    "storage_bucket": "todo-app-firebase-notif.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:860272973880:android:42e2de128a055c76f7aecd",
+        "android_client_info": {
+          "package_name": "com.example.todo_app_firbase_notification"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsnSWrYdHEiXgfwmVJPqEeQC4e6EItO60"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
