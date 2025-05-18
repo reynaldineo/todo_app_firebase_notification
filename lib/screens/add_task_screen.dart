@@ -85,35 +85,113 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Add Task')),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            TextField(
-              controller: _titleController,
-              decoration: const InputDecoration(labelText: 'Task Title'),
-            ),
-            const SizedBox(height: 20),
-            Row(
-              children: [
-                ElevatedButton(
-                  onPressed: _pickDate,
-                  child: const Text('Select Due Date'),
+      appBar: AppBar(title: const Text('Add Task'), elevation: 2),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Task title field with better styling
+              const Text(
+                'Task Title',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              ),
+              const SizedBox(height: 8),
+              TextField(
+                controller: _titleController,
+                decoration: const InputDecoration(
+                  hintText: 'Enter task title',
+                  border: OutlineInputBorder(),
+                  filled: true,
+                  fillColor: Colors.white,
                 ),
-                const SizedBox(width: 10),
-                if (_selectedDate != null)
-                  Text('${_selectedDate!.toLocal()}'.split('.')[0]),
-              ],
-            ),
-            const Spacer(),
-            ElevatedButton(
-              onPressed: _submitTask,
-              child: const Text('Save Task'),
-            ),
-          ],
+                autofocus: true,
+                textCapitalization: TextCapitalization.sentences,
+              ),
+
+              const SizedBox(height: 24),
+
+              // Due date section
+              const Text(
+                'Due Date & Time',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              ),
+              const SizedBox(height: 12),
+
+              // Due date selection card
+              Card(
+                elevation: 2,
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (_selectedDate != null)
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 16),
+                          child: Row(
+                            children: [
+                              const Icon(Icons.event, color: Colors.blue),
+                              const SizedBox(width: 8),
+                              Text(
+                                'Selected: ${_formatDate(_selectedDate!)}',
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+
+                      ElevatedButton.icon(
+                        onPressed: _pickDate,
+                        icon: const Icon(Icons.calendar_today),
+                        label: Text(
+                          _selectedDate == null
+                              ? 'Select Due Date & Time'
+                              : 'Change Date & Time',
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 12,
+                            horizontal: 16,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 40),
+
+              // Save button - full width
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: _submitTask,
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 15),
+                    backgroundColor: Theme.of(context).primaryColor,
+                    foregroundColor: Colors.white,
+                  ),
+                  child: const Text(
+                    'Save Task',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  // Helper method to format date
+  String _formatDate(DateTime date) {
+    return '${date.day}/${date.month}/${date.year} at ${date.hour}:${date.minute.toString().padLeft(2, '0')}';
   }
 }
