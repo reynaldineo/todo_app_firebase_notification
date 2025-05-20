@@ -35,6 +35,16 @@ A modern, feature-rich task management application built with Flutter that uses 
 
 </details>
 
+## Screenshots
+
+|             All Tasks             |           Notification            |               Completed Task                |
+| :-------------------------------: | :-------------------------------: | :-----------------------------------------: |
+| ![All Tasks](public/all_task.png) | ![Notification](public/notif.png) | ![Completed Task](public/complete_task.png) |
+
+|               Pending Task               |              Delete Task               |                 Detail/Edit Task                 |
+| :--------------------------------------: | :------------------------------------: | :----------------------------------------------: |
+| ![Pending Task](public/pending_task.png) | ![Delete Task](public/delete_task.png) | ![Detail/Edit Task](public/detail_edit_task.png) |
+
 ## Technology Stack
 
 -   **Frontend**: Flutter/Dart
